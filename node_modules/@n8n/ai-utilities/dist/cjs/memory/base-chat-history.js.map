@@ -1,0 +1,1 @@
+{"version":3,"file":"base-chat-history.js","sourceRoot":"","sources":["../../../src/memory/base-chat-history.ts"],"names":[],"mappings":";;;;;;;;;;;;IAGA,MAAsB,eAAe;QAKpC,KAAK,CAAC,WAAW,CAAC,QAAmB;YACpC,KAAK,MAAM,GAAG,IAAI,QAAQ,EAAE,CAAC;gBAC5B,MAAM,IAAI,CAAC,UAAU,CAAC,GAAG,CAAC,CAAC;YAC5B,CAAC;QACF,CAAC;KAGD;IAZD,0CAYC"}

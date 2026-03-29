@@ -1,0 +1,34 @@
+import { MemoryVectorStore } from '@langchain/classic/vectorstores/memory';
+import type { Document } from '@langchain/core/documents';
+import type { Embeddings } from '@langchain/core/embeddings';
+import type { OpenAIEmbeddings, AzureOpenAIEmbeddings } from '@langchain/openai';
+import type { Logger } from 'n8n-workflow';
+import { MemoryCalculator } from './MemoryCalculator';
+import { StoreCleanupService } from './StoreCleanupService';
+import type { VectorStoreMetadata, VectorStoreStats } from './types';
+export declare class MemoryVectorStoreManager {
+    protected embeddings: Embeddings | OpenAIEmbeddings | AzureOpenAIEmbeddings;
+    protected logger: Logger;
+    private static instance;
+    protected vectorStoreBuffer: Map<string, MemoryVectorStore>;
+    protected storeMetadata: Map<string, VectorStoreMetadata>;
+    protected memoryUsageBytes: number;
+    protected memoryCalculator: MemoryCalculator;
+    protected cleanupService: StoreCleanupService;
+    protected static logger: Logger;
+    protected maxMemorySizeBytes: number;
+    protected inactiveTtlMs: number;
+    protected ttlCleanupIntervalId: NodeJS.Timeout | null;
+    protected constructor(embeddings: Embeddings | OpenAIEmbeddings | AzureOpenAIEmbeddings, logger: Logger);
+    static getInstance(embeddings: Embeddings | OpenAIEmbeddings | AzureOpenAIEmbeddings, logger: Logger): MemoryVectorStoreManager;
+    private setupTtlCleanup;
+    private handleCleanup;
+    getMemoryKeysList(): string[];
+    getVectorStore(memoryKey: string): Promise<MemoryVectorStore>;
+    protected clearStoreMetadata(memoryKey: string): void;
+    getMemoryUsage(): number;
+    getMemoryUsageFormatted(): string;
+    recalculateMemoryUsage(): void;
+    addDocuments(memoryKey: string, documents: Document[], clearStore?: boolean): Promise<void>;
+    getStats(): VectorStoreStats;
+}

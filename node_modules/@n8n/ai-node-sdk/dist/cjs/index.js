@@ -1,0 +1,30 @@
+(function (factory) {
+    if (typeof module === "object" && typeof module.exports === "object") {
+        var v = factory(require, exports);
+        if (v !== undefined) module.exports = v;
+    }
+    else if (typeof define === "function" && define.amd) {
+        define(["require", "exports", "@n8n/ai-utilities", "@n8n/ai-utilities", "@n8n/ai-utilities", "@n8n/ai-utilities", "@n8n/ai-utilities", "@n8n/ai-utilities", "@n8n/ai-utilities", "@n8n/ai-utilities"], factory);
+    }
+})(function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.supplyModel = exports.supplyMemory = exports.WindowedChatMemory = exports.BaseChatMemory = exports.BaseChatHistory = exports.BaseChatModel = exports.getParametersJsonSchema = exports.parseSSEStream = void 0;
+    var ai_utilities_1 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "parseSSEStream", { enumerable: true, get: function () { return ai_utilities_1.parseSSEStream; } });
+    var ai_utilities_2 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "getParametersJsonSchema", { enumerable: true, get: function () { return ai_utilities_2.getParametersJsonSchema; } });
+    var ai_utilities_3 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "BaseChatModel", { enumerable: true, get: function () { return ai_utilities_3.BaseChatModel; } });
+    var ai_utilities_4 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "BaseChatHistory", { enumerable: true, get: function () { return ai_utilities_4.BaseChatHistory; } });
+    var ai_utilities_5 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "BaseChatMemory", { enumerable: true, get: function () { return ai_utilities_5.BaseChatMemory; } });
+    var ai_utilities_6 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "WindowedChatMemory", { enumerable: true, get: function () { return ai_utilities_6.WindowedChatMemory; } });
+    var ai_utilities_7 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "supplyMemory", { enumerable: true, get: function () { return ai_utilities_7.supplyMemory; } });
+    var ai_utilities_8 = require("@n8n/ai-utilities");
+    Object.defineProperty(exports, "supplyModel", { enumerable: true, get: function () { return ai_utilities_8.supplyModel; } });
+});
+//# sourceMappingURL=index.js.map

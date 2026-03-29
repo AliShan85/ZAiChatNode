@@ -1,0 +1,2 @@
+export declare const AiNodePackageJsonRule: import("@typescript-eslint/utils/ts-eslint").RuleModule<"missingPeerDep" | "missingSdkVersion" | "invalidSdkVersion" | "wrongLocation", [], unknown, import("@typescript-eslint/utils/ts-eslint").RuleListener>;
+//# sourceMappingURL=ai-node-package-json.d.ts.map
