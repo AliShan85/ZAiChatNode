@@ -242,7 +242,7 @@ export class ZaiChatModel extends BaseChatModel<ZaiChatModelConfig> {
 								: undefined,
 						};
 					}
-				} catch (e) {
+				} catch {
 					// Skip invalid JSON
 					continue;
 				}
