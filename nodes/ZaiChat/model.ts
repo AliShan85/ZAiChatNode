@@ -78,7 +78,7 @@ export class ZaiChatModel extends BaseChatModel<ZaiChatModelConfig> {
 		config?: ZaiChatModelConfig,
 	) {
 		super('zai', modelId, config);
-		this.baseURL = config?.baseURL ?? 'https://api.zai.ai';
+		this.baseURL = config?.baseURL ?? 'https://api.z.ai';
 	}
 
 	/**
