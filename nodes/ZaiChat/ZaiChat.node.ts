@@ -38,7 +38,7 @@ export class ZaiChat implements INodeType {
 			resources: {
 				primaryDocumentation: [
 					{
-						url: 'https://docs.zai.ai',
+						url: 'https://docs.z.ai',
 					},
 				],
 			},
@@ -88,6 +88,7 @@ export class ZaiChat implements INodeType {
 							method,
 							body,
 							headers,
+							timeout: 30000,
 						},
 					);
 					return { body: response };
@@ -101,6 +102,7 @@ export class ZaiChat implements INodeType {
 							url,
 							body,
 							headers,
+							timeout: 30000,
 							encoding: 'stream',
 						},
 					);
@@ -108,7 +110,7 @@ export class ZaiChat implements INodeType {
 				},
 			},
 			{
-				baseURL: credentials.host as string,
+					baseURL: credentials.host as string,
 				apiKey: credentials.apiKey as string,
 				providerTools,
 				temperature: options.temperature,
