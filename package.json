@@ -31,12 +31,10 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
-			"dist/credentials/GithubIssuesApi.credentials.js",
-			"dist/credentials/GithubIssuesOAuth2Api.credentials.js"
+			"dist/credentials/ZaiApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/GithubIssues/GithubIssues.node.js",
-			"dist/nodes/Example/Example.node.js"
+			"dist/nodes/ZaiChat/ZaiChat.node.js"
 		]
 	},
 	"devDependencies": {
