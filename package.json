@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-zai",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "n8n community node for Z.ai API - Connect to GLM-4.5-Flash and other Z.ai language models for chat completions, streaming responses, and AI-powered automation workflows",
 	"license": "MIT",
 	"homepage": "https://github.com/AliShan85/ZAiChatNode#readme",
