@@ -82,6 +82,23 @@ export class ZaiChatModel extends BaseChatModel<ZaiChatModelConfig> {
 	}
 
 	/**
+	 * Check if the model is a coding-focused model that requires the coding endpoint
+	 */
+	private isCodingModel(modelId: string): boolean {
+		const codingModels = ['codegeex', 'glm-5-code', 'glm-4.7'];
+		return codingModels.includes(modelId);
+	}
+
+	/**
+	 * Get the correct API path based on the model type
+	 */
+	private getApiPath(): string {
+		return this.isCodingModel(this.modelId)
+			? '/api/coding/paas/v4/chat/completions'
+			: '/api/paas/v4/chat/completions';
+	}
+
+	/**
 	 * Convert n8n messages to Zai format
 	 */
 	private messagesToZaiFormat(messages: Message[]): Array<{ role: string; content: string }> {
@@ -138,7 +155,7 @@ export class ZaiChatModel extends BaseChatModel<ZaiChatModelConfig> {
 		try {
 			const response = await this.requests.httpRequest(
 				'POST',
-				`${this.baseURL}/api/paas/v4/chat/completions`,
+				`${this.baseURL}${this.getApiPath()}`,
 				requestBody,
 			);
 
@@ -203,7 +220,7 @@ export class ZaiChatModel extends BaseChatModel<ZaiChatModelConfig> {
 		try {
 			const streamResponse = await this.requests.openStream(
 				'POST',
-				`${this.baseURL}/api/paas/v4/chat/completions`,
+				`${this.baseURL}${this.getApiPath()}`,
 				requestBody,
 			);
 
@@ -242,7 +259,7 @@ export class ZaiChatModel extends BaseChatModel<ZaiChatModelConfig> {
 								: undefined,
 						};
 					}
-				} catch (e) {
+				} catch {
 					// Skip invalid JSON
 					continue;
 				}
