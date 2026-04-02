@@ -121,20 +121,20 @@ export const zaiChatProperties: INodeProperties[] = [
 		default: {},
 		options: [
 			{
-				displayName: 'Request Timeout (ms)',
-				name: 'timeout',
-				type: 'number',
-				typeOptions: { minValue: 0, maxValue: 700000 },
-				default: 0,
-				description: 'Time in milliseconds to wait for the request to complete. Set to 0 for no timeout.',
-			},
-			{
 				displayName: 'Maximum Number of Tokens',
 				name: 'maxTokens',
 				type: 'number',
 				typeOptions: { minValue: 1, maxValue: 128000 },
 				default: 4096,
 				description: 'The maximum number of tokens to generate in the completion',
+			},
+			{
+				displayName: 'Request Timeout (Ms)',
+				name: 'timeout',
+				type: 'number',
+				typeOptions: { minValue: 0, maxValue: 700000 },
+				default: 0,
+				description: 'Time in milliseconds to wait for the request to complete. Set to 0 for no timeout.',
 			},
 			{
 				displayName: 'Safety Settings',
