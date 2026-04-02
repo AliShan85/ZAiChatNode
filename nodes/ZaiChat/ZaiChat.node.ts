@@ -16,6 +16,7 @@ type ModelOptions = {
 	topK?: number;
 	topP?: number;
 	safetySettings?: Array<{ safetyCategory: string; safetyThreshold: string }>;
+	timeout?: number;
 };
 
 export class ZaiChat implements INodeType {
@@ -88,7 +89,7 @@ export class ZaiChat implements INodeType {
 							method,
 							body,
 							headers,
-							timeout: 30000,
+							timeout: options.timeout,
 						},
 					);
 					return { body: response };
@@ -102,7 +103,7 @@ export class ZaiChat implements INodeType {
 							url,
 							body,
 							headers,
-							timeout: 30000,
+							timeout: options.timeout,
 							encoding: 'stream',
 						},
 					);

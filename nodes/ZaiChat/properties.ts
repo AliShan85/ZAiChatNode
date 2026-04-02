@@ -10,66 +10,66 @@ export const zaiChatProperties: INodeProperties[] = [
 			{
 				name: 'CodeGeeX (Coding)',
 				value: 'codegeex',
-				description: 'Code-specific model',
+				description: 'Optimized for code generation, debugging, and technical tasks',
 			},
 			{
 				name: 'GLM-4-32B-0414-128K',
 				value: 'glm-4-32b-0414-128k',
-				description: '128K context • $0.10 input/output',
+				description: 'Large context model for long documents and conversations',
 			},
 			// GLM-4.5 Series (MoE)
 			{
 				name: 'GLM-4.5 (AI Agents)',
 				value: 'glm-4.5',
-				description: 'Mixture-of-Experts • $0.60 input / $2.20 output',
+				description: 'Mixture-of-Experts model designed for complex agent workflows',
 			},
 			{
 				name: 'GLM-4.5-Air (Lightweight)',
 				value: 'glm-4.5-air',
-				description: 'Lightweight • $0.20 input / $1.10 output',
+				description: 'Lightweight and efficient model for general-purpose tasks',
 			},
 			{
 				name: 'GLM-4.5-Flash (Free)',
 				value: 'glm-4.5-flash',
-				description: 'FREE tier • Agentic tasks',
+				description: 'Fast and cost-efficient model for simple or high-volume tasks',
 			},
 			// GLM-4.6 Series
 			{
 				name: 'GLM-4.6 (200K Context)',
 				value: 'glm-4.6',
-				description: 'Long context • $0.60 input / $2.20 output',
+				description: 'Extended context model for large-scale inputs and memory-heavy tasks',
 			},
 			// GLM-4.7 Series (Flagship)
 			{
-				name: 'GLM-4.7 (Strong Coding)',
+				name: 'GLM-4.7 (Advanced Coding)',
 				value: 'glm-4.7',
-				description: 'Best for coding • $0.60 input / $2.20 output',
+				description: 'High-performance model specialized in complex coding tasks',
 			},
 			{
 				name: 'GLM-4.7-Flash (Free)',
 				value: 'glm-4.7-flash',
-				description: 'FREE tier • Fast responses',
+				description: 'Fast and lightweight model for quick responses',
 			},
 			{
 				name: 'GLM-4.7-FlashX',
 				value: 'glm-4.7-flashx',
-				description: 'Ultra-fast • $0.07 input / $0.40 output',
+				description: 'Ultra-fast model optimized for low-latency applications',
 			},
 			// GLM-5 Series (Latest Generation)
 			{
-				name: 'GLM-5 (Latest Flagship)',
+				name: 'GLM-5 (Flagship)',
 				value: 'glm-5',
-				description: 'Complex system engineering • $1.00 input / $3.20 output',
+				description: 'Top-tier model for complex reasoning and system-level tasks',
 			},
 			{
 				name: 'GLM-5-Code',
 				value: 'glm-5-code',
-				description: 'Coding specialist • $1.20 input / $5.00 output',
+				description: 'Specialized flagship model for advanced software development',
 			},
 			{
 				name: 'GLM-5-Turbo',
 				value: 'glm-5-turbo',
-				description: 'High-performance • $1.20 input / $4.00 output',
+				description: 'High-performance model balancing speed and reasoning capability',
 			},
 		],
 		default: 'glm-4.7',
@@ -120,6 +120,14 @@ export const zaiChatProperties: INodeProperties[] = [
 		type: 'collection',
 		default: {},
 		options: [
+			{
+				displayName: 'Request Timeout (ms)',
+				name: 'timeout',
+				type: 'number',
+				typeOptions: { minValue: 0, maxValue: 700000 },
+				default: 0,
+				description: 'Time in milliseconds to wait for the request to complete. Set to 0 for no timeout.',
+			},
 			{
 				displayName: 'Maximum Number of Tokens',
 				name: 'maxTokens',
