@@ -4,22 +4,21 @@ This is an n8n community node that integrates [Z.ai](https://open.bigmodel.cn/) 
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-## Features
+## Supported Models
 
-- **Multiple GLM Models**: Access to Zhipu AI's latest models including:
+Access to Zhipu AI's latest GLM models including:
   - **GLM-4.5** - Mixture-of-Experts model for AI agents
   - **GLM-4.5-Flash** - Free tier for agentic tasks
   - **GLM-4.5-Air** - Lightweight model
   - **GLM-4.6** - 200K context window for long conversations
-  - **GLM-4.7** - Flagship model with strong coding capabilities
+  - **GLM-4.7** - Flagship model with strong coding capabilities (default)
   - **GLM-4.7-Flash** - Free tier with latest features
-  - **GLM-4.32B** - 128K context at $0.10 per million tokens
+  - **GLM-4.7-FlashX** - Ultra-fast model for low-latency applications
+  - **GLM-4-32B-0414-128K** - 128K context for long documents
+  - **GLM-5** - Latest generation flagship for complex reasoning
+  - **GLM-5-Code** - Specialized for advanced software development
+  - **GLM-5-Turbo** - High-performance with speed and reasoning balance
   - **CodeGeeX** - Specialized model for coding tasks
-
-- **Streaming Responses**: Support for real-time streaming responses
-- **Customizable Parameters**: Control temperature, max tokens, top-p, and more
-- **System Prompts**: Set custom system messages to guide model behavior
-- **Chat History**: Maintain conversation context across workflow executions
 
 ## Installation
 
@@ -56,12 +55,25 @@ To use this node, you need a Z.ai API key:
 Generate chat completions using Z.ai's GLM models.
 
 **Inputs:**
-- **Model**: Select which GLM model to use (see Features section for options)
+- **Model**: Select which GLM model to use (see Supported Models section for options, default: GLM-4.7)
 - **Messages**: Array of chat messages with roles (system, user, assistant)
 - **Temperature**: Control randomness (0.0 - 2.0, default: 0.7)
-- **Max Tokens**: Maximum tokens in the response (default: 1024)
+- **Max Tokens**: Maximum tokens in the response (default: 4096)
 - **Top P**: Nucleus sampling parameter (0.0 - 1.0, default: 1.0)
-- **Stream**: Enable streaming responses (boolean, default: false)
+- **Top K**: Remove "long tail" low probability responses (0 - 32, default: 32.0)
+- **Timeout**: Request timeout in milliseconds (default: 0, no timeout)
+
+**Built-in Tools:**
+- **Web Search**: Enable the model to search the web for current information
+  - **Search Context Size**: Amount of context for search (low/medium/high)
+  - **Allowed Domains**: Restrict search to specific domains (comma-separated)
+
+**Safety Settings:**
+- **Harassment**: Filter harassment content
+- **Hate Speech**: Filter hate speech and content
+- **Sexually Explicit**: Filter sexually explicit content
+- **Dangerous Content**: Filter dangerous content
+- **Block Threshold**: Set sensitivity level (LOW/MEDIUM/HIGH/NONE)
 
 **Outputs:**
 - **Response**: The model's text response
@@ -99,24 +111,20 @@ Use **GLM-4.6** with its 200K token context window for maintaining long conversa
 
 ### Coding Tasks
 
-Use **CodeGeeX** or **GLM-4.7** (strong coding model) for code generation, debugging, and explanation.
+Use **CodeGeeX**, **GLM-4.7** (strong coding model), or **GLM-5-Code** for advanced software development tasks including code generation, debugging, and explanation.
+
+### Web Search Integration
+
+Enable the **Web Search** built-in tool to give the model access to current information from the web. Configure search context size and restrict to specific domains if needed.
+
+### Latest Generation Models
+
+Use **GLM-5** for complex reasoning tasks or **GLM-5-Turbo** for a balance of speed and capability.
 
 ## Compatibility
 
 - **Minimum n8n version**: 1.0.0
 - **Tested with**: n8n 1.60.0+
-
-## Pricing
-
-Z.ai offers competitive pricing with free tiers:
-
-- **GLM-4.5-Flash**: FREE
-- **GLM-4.7-Flash**: FREE
-- **GLM-4.32B**: $0.10 per million tokens (input/output)
-- **GLM-4.5 / 4.6 / 4.7**: $0.60 input / $2.20 output per million tokens
-- **GLM-4.5-Air**: $0.20 input / $1.10 output per million tokens
-
-For the latest pricing, visit [Z.ai Pricing](https://open.bigmodel.cn/pricing).
 
 ## Resources
 
@@ -124,16 +132,6 @@ For the latest pricing, visit [Z.ai Pricing](https://open.bigmodel.cn/pricing).
 * [Z.ai API Documentation](https://open.bigmodel.cn/dev/api)
 * [Z.ai Platform](https://open.bigmodel.cn/)
 * [n8n Community Forum](https://community.n8n.io/)
-
-## Version History
-
-### 0.1.5 (Latest)
-- Initial public release
-- Support for GLM-4.5, GLM-4.6, GLM-4.7 series
-- Support for CodeGeeX coding model
-- Streaming responses support
-- Configurable temperature, max tokens, and top-p parameters
-- Free tier Flash models support
 
 ## License
 
