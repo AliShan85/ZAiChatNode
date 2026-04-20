@@ -55,7 +55,8 @@
 		"typescript": "5.9.3"
 	},
 	"peerDependencies": {
-		"n8n-workflow": "*"
+		"n8n-workflow": "*",
+		"@n8n/ai-node-sdk": "*"
 	},
 	"publishConfig": {
 		"access": "public"
