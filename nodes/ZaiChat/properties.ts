@@ -216,8 +216,8 @@ export const zaiChatProperties: INodeProperties[] = [
                 displayName: 'Top K',
                 name: 'topK',
                 type: 'number',
-                typeOptions: {maxValue: 32, minValue: 0, numberPrecision: 2},
-                default: 32.0,
+                typeOptions: {maxValue: 32, minValue: -1, numberPrecision: 2},
+                default: -1.0,
                 description: 'Used to remove "long tail" low probability responses. Defaults to -1, which disables it.',
             },
             {
