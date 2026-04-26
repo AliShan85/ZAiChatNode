@@ -1,24 +1,17 @@
 # n8n-nodes-zai
 
-This is an n8n community node that integrates [Z.ai](https://open.bigmodel.cn/) (GLM) language models into your n8n workflows. It provides access to Zhipu AI's powerful GLM series models including GLM-4.5, GLM-4.6, GLM-4.7, and CodeGeeX for chat completions, AI agents, coding tasks, and more.
+n8n community node for integrating [Z.ai](https://open.bigmodel.cn/) (GLM) models into your workflows. Provides AI chat completions with streaming support and image generation using GLM-Image and CogView-4 models.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-## Supported Models
+## Included Nodes
 
-Access to Zhipu AI's latest GLM models including:
-  - **GLM-4.5** - Mixture-of-Experts model for AI agents
-  - **GLM-4.5-Flash** - Free tier for agentic tasks
-  - **GLM-4.5-Air** - Lightweight model
-  - **GLM-4.6** - 200K context window for long conversations
-  - **GLM-4.7** - Flagship model with strong coding capabilities (default)
-  - **GLM-4.7-Flash** - Free tier with latest features
-  - **GLM-4.7-FlashX** - Ultra-fast model for low-latency applications
-  - **GLM-4-32B-0414-128K** - 128K context for long documents
-  - **GLM-5** - Latest generation flagship for complex reasoning
-  - **GLM-5-Code** - Specialized for advanced software development
-  - **GLM-5-Turbo** - High-performance with speed and reasoning balance
-  - **CodeGeeX** - Specialized model for coding tasks
+| Node | Description |
+|------|-------------|
+| **Z.ai Chat Model** | AI chat completions with GLM language models (streaming, web search, safety settings) |
+| **Z.ai Image** | Generate images from text prompts using GLM-Image and CogView-4 models |
+
+Both nodes share the same **Zai API** credential.
 
 ## Installation
 
@@ -38,7 +31,7 @@ Or follow the [installation guide](https://docs.n8n.io/integrations/community-no
 
 ## Credentials
 
-To use this node, you need a Z.ai API key:
+To use these nodes, you need a Z.ai API key:
 
 1. Visit [Z.ai Open Platform](https://open.bigmodel.cn/)
 2. Sign up for an account
@@ -48,78 +41,123 @@ To use this node, you need a Z.ai API key:
 
 **Note**: The Z.ai API provides free tiers for Flash models, making it easy to get started without costs.
 
-## Operations
+---
 
-### Chat
+## Z.ai Chat Model
 
-Generate chat completions using Z.ai's GLM models.
+AI chat completions using Z.ai's GLM language models. Designed to work with n8n's AI Agent and Basic LLM Chain nodes.
 
-**Inputs:**
-- **Model**: Select which GLM model to use (see Supported Models section for options, default: GLM-4.7)
-- **Messages**: Array of chat messages with roles (system, user, assistant)
-- **Temperature**: Control randomness (0.0 - 2.0, default: 0.7)
-- **Max Tokens**: Maximum tokens in the response (default: 4096)
-- **Top P**: Nucleus sampling parameter (0.0 - 1.0, default: 1.0)
-- **Top K**: Remove "long tail" low probability responses (0 - 32, default: 32.0)
-- **Timeout**: Request timeout in milliseconds (default: 0, no timeout)
+### Supported Models
+
+- **GLM-4.5** - Mixture-of-Experts model for AI agents
+- **GLM-4.5-Flash** - Free tier for agentic tasks
+- **GLM-4.5-Air** - Lightweight model
+- **GLM-4.6** - 200K context window for long conversations
+- **GLM-4.7** - Flagship model with strong coding capabilities (default)
+- **GLM-4.7-Flash** - Free tier with latest features
+- **GLM-4.7-FlashX** - Ultra-fast model for low-latency applications
+- **GLM-4-32B-0414-128K** - 128K context for long documents
+- **GLM-5** - Latest generation flagship for complex reasoning
+- **GLM-5-Code** - Specialized for advanced software development
+- **GLM-5-Turbo** - High-performance with speed and reasoning balance
+- **CodeGeeX** - Specialized model for coding tasks
+
+### Parameters
+
+**Model**: Select which GLM model to use (default: GLM-4.7)
 
 **Built-in Tools:**
 - **Web Search**: Enable the model to search the web for current information
   - **Search Context Size**: Amount of context for search (low/medium/high)
   - **Allowed Domains**: Restrict search to specific domains (comma-separated)
 
-**Safety Settings:**
-- **Harassment**: Filter harassment content
-- **Hate Speech**: Filter hate speech and content
-- **Sexually Explicit**: Filter sexually explicit content
-- **Dangerous Content**: Filter dangerous content
-- **Block Threshold**: Set sensitivity level (LOW/MEDIUM/HIGH/NONE)
+**Options:**
+- **Temperature**: Control randomness (0.0 - 2.0, default: 0.7)
+- **Max Tokens**: Maximum tokens in the response (default: 4096)
+- **Top P**: Nucleus sampling parameter (0.0 - 1.0, default: 1.0)
+- **Top K**: Remove low probability responses (-1 to disable, 0-32, default: -1)
+- **Safety Settings**: Configure content moderation filters
+  - **Categories**: Harassment, Hate Speech, Sexually Explicit, Dangerous Content
+  - **Thresholds**: Block Low and Above, Block Medium and Above, Block Only High, Block None
+- **Timeout**: Request timeout in milliseconds (default: 0, no timeout)
 
-**Outputs:**
-- **Response**: The model's text response
-- **Usage**: Token usage statistics (prompt tokens, completion tokens, total)
-- **Model**: Which model was used
-- **Finish Reason**: Why the generation stopped (length, stop, etc.)
+---
+
+## Z.ai Image
+
+Generate images from text prompts using Z.ai's image generation models.
+
+### Supported Models
+
+- **GLM-Image** - High-quality image generation (default)
+- **CogView-4** - Fast image generation
+
+### Parameters
+
+**Model**: Select which image model to use (default: GLM-Image)
+
+**Prompt**: Text description of the image to generate (required)
+
+**Size**: Resolution presets differ per model:
+
+| GLM-Image | CogView-4 |
+|-----------|-----------|
+| 1280 x 1280 (default) | 1024 x 1024 (default) |
+| 1568 x 1056 | 768 x 1344 |
+| 1056 x 1568 | 864 x 1152 |
+| 1472 x 1088 | 1344 x 768 |
+| 1088 x 1472 | 1152 x 864 |
+| 1728 x 960 | 1440 x 720 |
+| 960 x 1728 | 720 x 1440 |
+| Custom | Custom |
+
+**Custom Dimensions:**
+- GLM-Image: 1024-2048px, must be a multiple of 32
+- CogView-4: 512-2048px, must be a multiple of 16
+
+**Options:**
+- **Quality**: HD (more detailed, ~20s) or Standard (faster, ~5-10s)
+- **User ID**: End-user identifier for abuse prevention (6-128 characters)
+- **File Name**: Custom file name for the output image
+- **Timeout**: Request timeout in milliseconds (default: 0, no timeout)
+
+### Output
+
+Each generated image is returned as binary data (viewable in n8n) with the following metadata:
+
+| Field | Description |
+|-------|-------------|
+| `model` | Model used for generation |
+| `prompt` | Text prompt submitted |
+| `size` | Image resolution |
+| `created` | Unix timestamp of creation |
+| `url` | Temporary image URL (expires after 30 days) |
+| `contentFilter` | Content safety information |
+| `fileName` | Output file name |
+
+---
 
 ## Usage Examples
 
-### Basic Chat Completion
+### AI Agent Chat
 
-```json
-{
-  "model": "glm-4.5-flash",
-  "messages": [
-    {
-      "role": "system",
-      "content": "You are a helpful assistant."
-    },
-    {
-      "role": "user",
-      "content": "Explain quantum computing in simple terms."
-    }
-  ]
-}
-```
+Connect the **Z.ai Chat Model** node to an AI Agent or Basic LLM Chain in n8n. Select a model, configure options, and let the agent handle conversations.
 
-### Using the Free Tier
+### Free Tier Usage
 
 Use **GLM-4.5-Flash** or **GLM-4.7-Flash** for free AI-powered text generation.
 
-### Long Context Conversations
-
-Use **GLM-4.6** with its 200K token context window for maintaining long conversation history.
-
 ### Coding Tasks
 
-Use **CodeGeeX**, **GLM-4.7** (strong coding model), or **GLM-5-Code** for advanced software development tasks including code generation, debugging, and explanation.
+Use **CodeGeeX**, **GLM-4.7**, or **GLM-5-Code** for code generation, debugging, and explanation.
 
 ### Web Search Integration
 
-Enable the **Web Search** built-in tool to give the model access to current information from the web. Configure search context size and restrict to specific domains if needed.
+Enable the **Web Search** built-in tool on the Chat Model node to give the model access to current information. Configure search context size and restrict to specific domains.
 
-### Latest Generation Models
+### Image Generation
 
-Use **GLM-5** for complex reasoning tasks or **GLM-5-Turbo** for a balance of speed and capability.
+Use the **Z.ai Image** node with a text prompt to generate images. Output is binary data that can be passed to downstream nodes for saving, emailing, or further processing.
 
 ## Compatibility
 
