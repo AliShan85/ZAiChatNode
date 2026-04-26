@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-zai",
 	"version": "0.2.1",
-	"description": "n8n community node for Z.ai API - Connect to GLM-4.5-Flash and other Z.ai language models for chat completions, streaming responses, and AI-powered automation workflows",
+	"description": "n8n community node for Z.ai API — AI chat completions with GLM language models, streaming support, built-in web search, and image generation with CogView-4 and GLM-Image",
 	"license": "MIT",
 	"homepage": "https://github.com/AliShan85/ZAiChatNode#readme",
 	"keywords": [
@@ -15,6 +15,8 @@
 		"ai",
 		"language-model",
 		"llm",
+		"image-generation",
+		"cogview",
 		"automation"
 	],
 	"author": {
@@ -44,7 +46,8 @@
 			"dist/credentials/ZaiApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/ZaiChat/ZaiChat.node.js"
+			"dist/nodes/ZaiChat/ZaiChat.node.js",
+			"dist/nodes/ZaiImage/ZaiImage.node.js"
 		]
 	},
 	"devDependencies": {
