@@ -21,14 +21,14 @@ type ModelOptions = {
 
 export class ZaiChat implements INodeType {
     description: INodeTypeDescription = {
-        displayName: 'Z.ai Chat Model',
+        displayName: 'Z.ai Chat',
         name: 'zaiChat',
         icon: {light: 'file:../../icons/zai.svg', dark: 'file:../../icons/zai.dark.svg'},
         group: ['transform'],
         version: [1],
         description: 'Converse with Zai AI language models',
         defaults: {
-            name: 'Z.ai Chat Model',
+            name: 'Z.ai Chat',
         },
         subtitle: '={{$parameter["model"]}}',
         codex: {
