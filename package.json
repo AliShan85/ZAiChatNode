@@ -59,7 +59,7 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*",
-		"@n8n/ai-node-sdk": "^1.0.0"
+		"@n8n/ai-node-sdk": ">=0.10.0"
 	},
 	"publishConfig": {
 		"access": "public"
