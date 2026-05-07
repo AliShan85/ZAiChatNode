@@ -6,9 +6,9 @@ n8n community node for integrating [Z.ai](https://open.bigmodel.cn/) (GLM) model
 
 ## Included Nodes
 
-| Node | Description |
-|------|-------------|
-| **Z.ai Chat Model** | AI chat completions with GLM language models (streaming, web search, safety settings) |
+| Node          | Description |
+|---------------|-------------|
+| **Z.ai Chat** | AI chat completions with GLM language models (streaming, web search, safety settings) |
 | **Z.ai Image** | Generate images from text prompts using GLM-Image and CogView-4 models |
 
 Both nodes share the same **Zai API** credential.
@@ -43,7 +43,7 @@ To use these nodes, you need a Z.ai API key:
 
 ---
 
-## Z.ai Chat Model
+## Z.ai Chat
 
 AI chat completions using Z.ai's GLM language models. Designed to work with n8n's AI Agent and Basic LLM Chain nodes.
 

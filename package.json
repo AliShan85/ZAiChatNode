@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-zai",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "n8n community node for Z.ai API — AI chat completions with GLM language models, streaming support, built-in web search, and image generation with CogView-4 and GLM-Image",
 	"license": "MIT",
 	"homepage": "https://github.com/AliShan85/ZAiChatNode#readme",
@@ -59,7 +59,7 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*",
-		"@n8n/ai-node-sdk": "*"
+		"@n8n/ai-node-sdk": "^1.0.0"
 	},
 	"publishConfig": {
 		"access": "public"
