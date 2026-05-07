@@ -13,6 +13,7 @@ export class ZaiImage implements INodeType {
 		defaults: {
 			name: 'Z.ai Image',
 		},
+			usableAsTool: true,
 		subtitle: '={{$parameter["model"]}}',
 		codex: {
 			categories: ['AI', 'Image Generation'],
@@ -123,12 +124,16 @@ export class ZaiImage implements INodeType {
 				);
 			}
 
-			const imageResponse = await this.helpers.httpRequest({
-				url: imageUrl,
-				method: 'GET',
-				encoding: 'arraybuffer',
-				timeout: options.timeout || undefined,
-			});
+			const imageResponse = await this.helpers.httpRequestWithAuthentication.call(
+				this,
+				'zaiApi',
+				{
+					url: imageUrl,
+					method: 'GET',
+					encoding: 'arraybuffer',
+					timeout: options.timeout || undefined,
+				},
+			);
 
 			const imageBuffer = Buffer.from(imageResponse);
 			const imageFileName = options.fileName || `zai-image-${model}`;
